@@ -1,8 +1,9 @@
-package org.algoyog.algos.dp;
+package org.algoyog.algos.algos.dp;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DynamicProgrammingTest {
 

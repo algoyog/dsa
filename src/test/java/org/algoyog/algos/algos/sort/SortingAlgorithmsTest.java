@@ -1,4 +1,4 @@
-package org.algoyog.algos.sort;
+package org.algoyog.algos.algos.sort;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

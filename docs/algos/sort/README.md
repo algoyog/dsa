@@ -91,15 +91,15 @@ This directory contains documentation and implementations of various sorting alg
 
 ### Comparison-Based Sorting Algorithms
 
-- [Merge Sort](./merge-sort.md) - A stable, divide-and-conquer algorithm with O(n log n) time complexity
-- [Quick Sort](./quick-sort.md) - A fast, in-place sorting algorithm with average O(n log n) time complexity
-- [Heap Sort](./heap-sort.md) - An in-place algorithm with guaranteed O(n log n) time complexity
+- [Merge Sort](merge-sort.md) - A stable, divide-and-conquer algorithm with O(n log n) time complexity
+- [Quick Sort](quick-sort.md) - A fast, in-place sorting algorithm with average O(n log n) time complexity
+- [Heap Sort](heap-sort.md) - An in-place algorithm with guaranteed O(n log n) time complexity
 
 ### Non-Comparison Sorting Algorithms
 
-- [Counting Sort](./counting-sort.md) - For sorting integers within a small range with O(n + k) time complexity
-- [Radix Sort](./radix-sort.md) - For sorting integers by processing individual digits
-- [Bucket Sort](./bucket-sort.md) - For sorting uniformly distributed values with potential O(n) time complexity
+- [Counting Sort](counting-sort.md) - For sorting integers within a small range with O(n + k) time complexity
+- [Radix Sort](radix-sort.md) - For sorting integers by processing individual digits
+- [Bucket Sort](bucket-sort.md) - For sorting uniformly distributed values with potential O(n) time complexity
 
 ## Comparison Table
 

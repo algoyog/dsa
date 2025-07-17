@@ -1,4 +1,4 @@
-package org.algoyog.algos.search;
+package org.algoyog.algos.algos.search;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

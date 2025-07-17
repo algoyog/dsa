@@ -1,4 +1,4 @@
-package org.algoyog.algos.dp;
+package org.algoyog.algos.algos.dp;
 
 import java.util.Arrays;
 

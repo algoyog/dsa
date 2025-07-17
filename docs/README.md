@@ -5,22 +5,22 @@ This documentation provides detailed explanations of the algorithms and data str
 ## Contents
 
 ### Searching Algorithms
-- [Linear Search](search/linear-search.md)
-- [Binary Search](search/binary-search.md)
-- [Jump Search](search/jump-search.md)
-- [Interpolation Search](search/interpolation-search.md)
-- [Exponential Search](search/exponential-search.md)
-- [Ternary Search](search/ternary-search.md)
-- [Fibonacci Search](search/fibonacci-search.md)
-- [Meta Binary Search](search/meta-binary-search.md)
+- [Linear Search](algos/search/linear-search.md)
+- [Binary Search](algos/search/binary-search.md)
+- [Jump Search](algos/search/jump-search.md)
+- [Interpolation Search](algos/search/interpolation-search.md)
+- [Exponential Search](algos/search/exponential-search.md)
+- [Ternary Search](algos/search/ternary-search.md)
+- [Fibonacci Search](algos/search/fibonacci-search.md)
+- [Meta Binary Search](algos/search/meta-binary-search.md)
 
 ### Sorting Algorithms
-- [Merge Sort](sort/merge-sort.md)
-- [Quick Sort](sort/quick-sort.md)
-- [Heap Sort](sort/heap-sort.md)
-- [Counting Sort](sort/counting-sort.md)
-- [Radix Sort](sort/radix-sort.md)
-- [Bucket Sort](sort/bucket-sort.md)
+- [Merge Sort](algos/sort/merge-sort.md)
+- [Quick Sort](algos/sort/quick-sort.md)
+- [Heap Sort](algos/sort/heap-sort.md)
+- [Counting Sort](algos/sort/counting-sort.md)
+- [Radix Sort](algos/sort/radix-sort.md)
+- [Bucket Sort](algos/sort/bucket-sort.md)
 
 ### Data Structures
 - [Arrays](ds/arrays/README.md)
@@ -36,12 +36,12 @@ This documentation provides detailed explanations of the algorithms and data str
   - [Disjoint Set](ds/union_find/disjoint-set.md)
 
 ### Dynamic Programming
-- [Fibonacci](dp/fibonacci.md)
-- [Knapsack Problem](dp/knapsack.md)
-- [Coin Change](dp/coin-change.md)
-- [Longest Common Subsequence](dp/longest-common-subsequence.md)
-- [Longest Increasing Subsequence](dp/longest-increasing-subsequence.md)
-- [Edit Distance](dp/edit-distance.md)
+- [Fibonacci](algos/dp/fibonacci.md)
+- [Knapsack Problem](algos/dp/knapsack.md)
+- [Coin Change](algos/dp/coin-change.md)
+- [Longest Common Subsequence](algos/dp/longest-common-subsequence.md)
+- [Longest Increasing Subsequence](algos/dp/longest-increasing-subsequence.md)
+- [Edit Distance](algos/dp/edit-distance.md)
 
 ## How to Use This Documentation
 

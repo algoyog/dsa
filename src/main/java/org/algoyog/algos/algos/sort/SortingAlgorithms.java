@@ -1,4 +1,4 @@
-package org.algoyog.algos.sort;
+package org.algoyog.algos.algos.sort;
 
 import java.util.Arrays;
 
