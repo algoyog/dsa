@@ -1,6 +1,6 @@
-# PayPal HackerRank Preparation
+# DSA Implementations.
 
-This repository contains implementations of common algorithms and data structures frequently tested in technical interviews, specifically designed to help prepare for the PayPal HackerRank assessment.
+This repository contains implementations of common algorithms and data structures.
 
 ## Project Structure
 
@@ -98,15 +98,6 @@ This project uses Java 21 and Maven. To compile and run:
 
 ```
 mvn clean package
-java -jar target/paypalprep-1.0-SNAPSHOT.jar
+java -jar target/dsa-1.0-SNAPSHOT.jar
 ```
 
-## Best Practices for HackerRank Assessments
-
-1. **Read the problem carefully** - Understand all requirements before coding
-2. **Handle edge cases** - Empty inputs, single elements, maximum/minimum values
-3. **Optimize** - Consider time and space complexity of your solutions
-4. **Test your code** - Use the provided examples and think of additional test cases
-5. **Manage your time** - If stuck, move to the next problem and come back later
-
-Good luck with your PayPal interview process!
