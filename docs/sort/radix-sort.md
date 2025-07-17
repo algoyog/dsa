@@ -126,7 +126,155 @@ Radix Sort is particularly well-suited for:
 5. **Computer Graphics**: For depth sorting in rendering pipelines
 
 6. **Genomic Sequence Analysis**: For sorting and aligning genetic sequences
+# Radix Sort
 
+## Problem Statement
+
+Radix Sort is a non-comparison-based sorting algorithm that sorts data with integer keys by grouping keys by individual digits that share the same significant position and value. It processes the digits of the numbers from the least significant digit (LSD) to the most significant digit (MSD), or vice versa.
+
+## Algorithm Strategy
+
+Radix Sort follows these steps:
+
+1. Find the maximum number to know the number of digits.
+2. For each digit position (starting from the least significant digit):
+   a. Sort the numbers based on the current digit position using a stable sort (typically Counting Sort).
+3. Repeat until all digit positions are processed.
+
+## Mathematical Foundation
+
+Radix Sort works on the mathematical principle that we can sort numbers by their individual digits, starting from the least significant position and moving toward the most significant position. The stable sorting property ensures that the relative order of elements with equal digits at the current position is preserved.
+
+The time complexity is O(d*(n+k)) where:
+- n is the number of elements
+- k is the range of input (typically the base of the number system, e.g., 10 for decimal)
+- d is the number of digits in the maximum element
+
+## Implementation Details
+
+```java
+public void radixSort(int[] arr) {
+    if (arr == null || arr.length <= 1) return;
+
+    // Find the maximum number to know the number of digits
+    int max = getMax(arr);
+
+    // Do counting sort for every digit
+    // exp is 10^i where i is the current digit position
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSortByDigit(arr, exp);
+    }
+}
+
+private int getMax(int[] arr) {
+    int max = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+private void countingSortByDigit(int[] arr, int exp) {
+    int n = arr.length;
+    int[] output = new int[n];
+    int[] count = new int[10]; // Counts for digits 0-9
+
+    // Count occurrences of each digit
+    for (int i = 0; i < n; i++) {
+        int digit = (arr[i] / exp) % 10;
+        count[digit]++;
+    }
+
+    // Change count[i] so that it contains the position of this digit in output[]
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Build the output array
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit]--;
+    }
+
+    // Copy the output array back to the original array
+    System.arraycopy(output, 0, arr, 0, n);
+}
+```
+
+## Testing Methodology
+
+Radix Sort should be tested with various input types:
+- Arrays with different numbers of digits
+- Arrays with all elements having the same number of digits
+- Arrays with some zero values
+- Very large arrays to test efficiency
+- Arrays with negative numbers (requiring special handling)
+
+## Unique Properties
+
+- **Non-comparison sort**: Sorts without comparing elements directly.
+- **Stable sort**: Preserves the relative order of elements with equal keys.
+- **Linear time complexity**: O(d*(n+k)) can be better than O(n log n) when d is small.
+- **Digit-by-digit processing**: Handles each digit position independently.
+
+## Use Cases
+
+1. Sorting large integers with a bounded number of digits
+2. Sorting strings of equal length
+3. Sorting decimal or fixed-point numbers
+4. Applications where stability is required
+5. Card sorting machines (the original inspiration for the algorithm)
+
+## Real-world Applications
+
+- Database indexing and sorting
+- Numerical simulations with fixed-precision numbers
+- Network routing tables sorted by IP addresses
+- Telephone directory sorting
+- Postal/mail sorting systems
+
+## Complexity Analysis
+
+| Case      | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| Best      | O(d*(n+k))     | O(n+k)           |
+| Average   | O(d*(n+k))     | O(n+k)           |
+| Worst     | O(d*(n+k))     | O(n+k)           |
+
+Where:
+- n is the number of elements
+- k is the range of a digit (typically 10 for decimal numbers)
+- d is the number of digits in the maximum element
+
+## Optimizations
+
+1. **MSD (Most Significant Digit) Radix Sort**: Start sorting from the most significant digit; can be more efficient for string sorting.
+2. **Hybrid approaches**: Combine with other algorithms for different digit positions or array sizes.
+3. **Parallel processing**: The digit-by-digit sorting can be parallelized for large datasets.
+4. **In-place implementation**: Reduce memory usage by implementing an in-place version.
+5. **Adaptive digit handling**: Process only the necessary digit positions based on the data distribution.
+
+## Comparison with Other Sorting Algorithms
+
+| Algorithm      | Time Complexity | Space Complexity | Stable | Best For                   |
+|----------------|----------------|-----------------|--------|----------------------------|
+| Radix Sort     | O(d*(n+k))     | O(n+k)          | Yes    | Fixed-length integers     |
+| Counting Sort  | O(n+k)         | O(n+k)          | Yes    | Small range integers       |
+| Quick Sort     | O(n log n)     | O(log n)        | No     | General-purpose sorting    |
+| Merge Sort     | O(n log n)     | O(n)            | Yes    | Stable, guaranteed performance |
+| Bucket Sort    | O(n+k)         | O(n+k)          | Yes    | Uniformly distributed data |
+
+## Limitations and Considerations
+
+- **Digit dependency**: Performance depends on the number of digits in the maximum value.
+- **Extra space**: Requires additional memory proportional to the input size.
+- **Limited applicability**: Primarily designed for integers or strings; requires preprocessing for other data types.
+- **Handling negative numbers**: Standard implementation typically requires special handling for negative numbers.
+- **Variable-length keys**: Basic implementation assumes fixed-length keys or pads shorter keys.
+- **Floating-point numbers**: Requires special handling for floating-point values.
 ## Complexity Analysis
 
 - **Time Complexity**:

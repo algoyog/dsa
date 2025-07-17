@@ -126,7 +126,141 @@ Bucket Sort is particularly well-suited for:
 - **Time Complexity**:
   - Best/Average case: O(n) when elements are uniformly distributed
   - Worst case: O(n²) when all elements are placed in a single bucket
+# Bucket Sort
 
+## Problem Statement
+
+Bucket Sort is a distribution-based sorting algorithm that distributes elements into a number of buckets, then sorts these buckets individually (often using another sorting algorithm) and finally concatenates the sorted buckets to obtain the sorted array. It is particularly effective when the input is uniformly distributed over a range.
+
+## Algorithm Strategy
+
+Bucket Sort follows these steps:
+
+1. **Create buckets**: Set up an array of initially empty buckets (or lists).
+2. **Distribute**: Put each element into its appropriate bucket based on its value.
+3. **Sort buckets**: Sort each non-empty bucket (using another sorting algorithm or recursively applying bucket sort).
+4. **Concatenate**: Gather the elements from all buckets in order to produce the sorted output.
+
+## Mathematical Foundation
+
+Bucket Sort works on the principle of dividing the range of input values into equally sized subranges or "buckets." When the input is uniformly distributed, each bucket is expected to contain few elements, making the individual bucket sorts efficient.
+
+For a uniform distribution, the average time complexity is O(n + k), where:
+- n is the number of elements
+- k is the number of buckets
+
+The algorithm's efficiency depends on the distribution of the input and the number of buckets chosen.
+
+## Implementation Details
+
+```java
+public void bucketSort(float[] arr) {
+    if (arr == null || arr.length <= 1) return;
+
+    int n = arr.length;
+
+    // Create buckets
+    @SuppressWarnings("unchecked")
+    List<Float>[] buckets = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        buckets[i] = new ArrayList<>();
+    }
+
+    // Distribute elements into buckets
+    for (int i = 0; i < n; i++) {
+        int bucketIndex = (int) (n * arr[i]); // Assuming values in range [0, 1)
+        buckets[bucketIndex].add(arr[i]);
+    }
+
+    // Sort each bucket using insertion sort or other algorithm
+    for (int i = 0; i < n; i++) {
+        Collections.sort(buckets[i]); // Could use any sorting algorithm here
+    }
+
+    // Concatenate buckets back into original array
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+        for (float value : buckets[i]) {
+            arr[index++] = value;
+        }
+    }
+}
+```
+
+## Testing Methodology
+
+Bucket Sort should be tested with various input types:
+- Uniformly distributed data (best case)
+- Skewed distributions (worst case)
+- Arrays with duplicate values
+- Arrays with different sizes
+- Arrays containing boundary values (0.0, 1.0 for the standard implementation)
+
+## Unique Properties
+
+- **Distribution-based sort**: Leverages the distribution of input data.
+- **Stable sort**: Can be stable if the underlying bucket sorting algorithm is stable.
+- **Adaptive to data distribution**: Performs exceptionally well on uniformly distributed data.
+- **Parallelizable**: Buckets can be sorted independently, making it suitable for parallel processing.
+
+## Use Cases
+
+1. Sorting uniformly distributed floating-point numbers in the range [0, 1)
+2. Sorting data with known, reasonably uniform distribution
+3. Applications where the data can be easily mapped to buckets
+4. External sorting with limited memory
+5. When parallelism can be exploited for sorting different buckets
+
+## Real-world Applications
+
+- Database systems for sorting uniformly distributed keys
+- Image processing for color quantization
+- Network packet routing based on address ranges
+- Geographic information systems (GIS) for spatial data sorting
+- Scientific computing for sorting simulation data
+
+## Complexity Analysis
+
+| Case      | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| Best      | O(n+k)         | O(n+k)           |
+| Average   | O(n+k)         | O(n+k)           |
+| Worst     | O(n²)          | O(n+k)           |
+
+Where:
+- n is the number of elements
+- k is the number of buckets
+
+The worst-case scenario occurs when all elements are placed in a single bucket, reducing the algorithm to the complexity of the algorithm used to sort that bucket.
+
+## Optimizations
+
+1. **Adaptive bucket count**: Choose the number of buckets based on the input size and distribution.
+2. **Optimized bucket sorting**: Use different algorithms for sorting buckets based on their size.
+3. **Dynamic bucket boundaries**: Adjust bucket boundaries based on data sampling.
+4. **Recursive bucketing**: Apply bucket sort recursively for large buckets.
+5. **Memory-efficient implementations**: Minimize memory overhead in bucket data structures.
+
+## Comparison with Other Sorting Algorithms
+
+| Algorithm      | Time Complexity (Avg) | Space Complexity | Stable | Best For                   |
+|----------------|----------------------|-----------------|--------|----------------------------|
+| Bucket Sort    | O(n+k)               | O(n+k)          | Yes*   | Uniformly distributed data |
+| Counting Sort  | O(n+k)               | O(n+k)          | Yes    | Small range integers       |
+| Radix Sort     | O(d*(n+k))           | O(n+k)          | Yes    | Fixed-length integers     |
+| Quick Sort     | O(n log n)           | O(log n)        | No     | General-purpose sorting    |
+| Merge Sort     | O(n log n)           | O(n)            | Yes    | Stable, guaranteed performance |
+
+*Stable if the algorithm used to sort individual buckets is stable
+
+## Limitations and Considerations
+
+- **Distribution dependency**: Performance heavily depends on the distribution of input data.
+- **Extra space**: Requires additional memory proportional to the input size.
+- **Bucket allocation**: Determining the optimal number of buckets and bucket boundaries can be challenging.
+- **Not suitable for all data types**: Works best when elements can be mapped to buckets in a meaningful way.
+- **Overflow risk**: Care must be taken when mapping elements to buckets to avoid index out of bounds errors.
+- **Efficiency concerns**: For non-uniform distributions, some buckets may contain many elements, degrading performance.
 - **Space Complexity**: O(n + k) where k is the number of buckets
 
 ## Optimizations

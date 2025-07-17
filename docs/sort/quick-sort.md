@@ -1,5 +1,134 @@
 # Quick Sort
+# Quick Sort
 
+## Problem Statement
+
+Quick Sort is a highly efficient sorting algorithm designed to arrange elements in a specific order (typically ascending or descending). It uses a divide-and-conquer strategy that selects a 'pivot' element and partitions the array around this pivot, placing smaller elements before it and larger elements after it.
+
+## Algorithm Strategy
+
+Quick Sort follows these steps:
+
+1. **Select a pivot**: Choose an element from the array as the pivot (commonly the first, last, or middle element).
+2. **Partition**: Rearrange the array so that all elements smaller than the pivot come before it, and all elements greater than the pivot come after it. The pivot is now in its final sorted position.
+3. **Recursively apply**: Recursively apply the above steps to the sub-arrays on the left and right of the pivot.
+
+## Mathematical Foundation
+
+The average case time complexity is O(n log n), derived from the recurrence relation:
+
+T(n) = T(k) + T(n-k-1) + O(n)
+
+Where:
+- k is the number of elements less than the pivot
+- O(n) is the time for the partitioning process
+
+In the best case (balanced partitioning), k ≈ n/2, leading to O(n log n) complexity.
+
+## Implementation Details
+
+```java
+public void quickSort(int[] arr, int low, int high) {
+    if (low < high) {
+        // Partition the array and get the pivot position
+        int pivotIndex = partition(arr, low, high);
+
+        // Recursively sort the subarrays
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+private int partition(int[] arr, int low, int high) {
+    // Choose the rightmost element as pivot
+    int pivot = arr[high];
+
+    // Index of smaller element
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        // If current element is smaller than or equal to pivot
+        if (arr[j] <= pivot) {
+            i++;
+            // Swap arr[i] and arr[j]
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    // Swap arr[i+1] and arr[high] (put the pivot in its correct position)
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
+```
+
+## Testing Methodology
+
+Quick Sort should be tested with various input types:
+- Random arrays of different sizes
+- Already sorted arrays (worst-case scenario for naive implementations)
+- Reverse sorted arrays
+- Arrays with many duplicate elements (can lead to unbalanced partitioning)
+- Arrays with a single element or empty arrays
+
+## Unique Properties
+
+- **In-place sorting**: Quick Sort typically requires only O(log n) additional space for recursion stack.
+- **Unstable sort**: Quick Sort doesn't preserve the relative order of equal elements.
+- **Divide and Conquer**: The partitioning approach makes it highly efficient for many types of data.
+- **Cache-friendly**: Due to its localized memory access patterns, Quick Sort often performs better in practice than other O(n log n) algorithms.
+
+## Use Cases
+
+1. General-purpose sorting where average-case performance is more important than worst-case guarantees
+2. Systems with limited memory where in-place sorting is beneficial
+3. When stability is not required
+4. Internal sorting in many programming language standard libraries
+
+## Real-world Applications
+
+- Implemented as the primary sorting algorithm in many programming language libraries
+- Database systems for internal sorting operations
+- Used in the implementation of other algorithms like nearest neighbor search
+- File system implementations for sorting entries
+
+## Complexity Analysis
+
+| Case      | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| Best      | O(n log n)     | O(log n)         |
+| Average   | O(n log n)     | O(log n)         |
+| Worst     | O(n²)          | O(log n)         |
+
+## Optimizations
+
+1. **Median-of-three pivot selection**: Choose the median of the first, middle, and last elements as the pivot to avoid worst-case scenarios.
+2. **Random pivot selection**: Randomly select the pivot to avoid worst-case performance on already sorted arrays.
+3. **Insertion sort for small subarrays**: Switch to insertion sort for small subarrays (typically less than 10-20 elements).
+4. **Tail recursion elimination**: Optimize the recursion to reduce stack space usage.
+5. **Three-way partitioning**: Handle duplicates more efficiently by creating three partitions (less than, equal to, and greater than the pivot).
+
+## Comparison with Other Sorting Algorithms
+
+| Algorithm    | Time Complexity (Avg) | Space Complexity | Stable | In-Place |
+|--------------|----------------------|-----------------|--------|----------|
+| Quick Sort   | O(n log n)           | O(log n)        | No     | Yes      |
+| Merge Sort   | O(n log n)           | O(n)            | Yes    | No       |
+| Heap Sort    | O(n log n)           | O(1)            | No     | Yes      |
+| Bubble Sort  | O(n²)                | O(1)            | Yes    | Yes      |
+| Insertion Sort| O(n²)               | O(1)            | Yes    | Yes      |
+
+## Limitations and Considerations
+
+- **Worst-case performance**: O(n²) time complexity in the worst case (when poorly balanced partitions occur).
+- **Not stable**: Doesn't preserve the relative order of equal elements.
+- **Sensitive to pivot selection**: Performance heavily depends on the choice of pivot.
+- **Recursive nature**: Deep recursion may cause stack overflow for very large arrays without tail-call optimization.
+- **Not ideal for nearly sorted data**: Other algorithms like insertion sort may perform better on nearly sorted arrays.
 ## Problem Statement
 
 Quick Sort tackles the fundamental problem of efficiently sorting elements in a collection. It's a divide-and-conquer algorithm that works by selecting a 'pivot' element and partitioning the array around it, such that elements less than the pivot come before it, and elements greater than the pivot come after it.
